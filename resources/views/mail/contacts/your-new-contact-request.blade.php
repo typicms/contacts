@@ -1,19 +1,9 @@
-@component('mail::message')
-# @lang('Hello!')
+<x-mail::message>
+# {{ __('Hello!') }}
 
-@lang('Thank you for your contact request.')
+{{ __('Thank you for submitting your message. We have received your details and our team will review them shortly.') }}
 
-@component('mail::panel')
-@foreach (Arr::except($contact->toArray(), ['id', 'created_at', 'updated_at', 'locale', 'privacy_policy_accepted']) as $key => $value)
-<p>
-<strong>{{ __(ucfirst($key)) }}</strong>
-<br />
-{{ $value }}
-</p>
-@endforeach
-@endcomponent
-
-@lang('Regards'),
+{{ __('Regards') }}
 <br />
 {{ websiteTitle() }}
-@endcomponent
+</x-mail::message>

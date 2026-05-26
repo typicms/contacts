@@ -1,17 +1,10 @@
-@component('mail::message')
-# @lang('New contact request from') {{ $contact->name }}.
+<x-mail::message>
+# {{ __('New message from') }} {{ $contact->full_name }}
 
-@component('mail::panel')
-@foreach (Arr::except($contact->toArray(), ['id', 'created_at', 'updated_at', 'locale', 'privacy_policy_accepted']) as $key => $value)
-<p>
-<strong>{{ __(ucfirst($key)) }}</strong>
-<br />
-{{ $value }}
-</p>
-@endforeach
-@endcomponent
+{{ __('A new message has just been submitted. You can review the full details by clicking the button below.') }}
 
-@component('mail::button', ['url' => route('admin::edit-contact', $contact->id)])
-@lang('See online')
-@endcomponent
-@endcomponent
+<x-mail::button :url="route('admin::edit-contact', $contact->id)">
+{{ __('Review message') }}
+</x-mail::button>
+
+</x-mail::message>
