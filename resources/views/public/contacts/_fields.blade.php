@@ -1,40 +1,15 @@
-{!!
-    BootForm::hidden('locale')->value(
-        isset($model->locale) ? $model->locale : app()->getLocale(),
-    )
-!!} {!!
-    BootForm::hidden(
-        'id',
-    )
-!!} {!!
-    BootForm::text(
-        __('Name') . ' <span class="required_mark">*</span>',
-        'name',
-    )
-        ->required()
-        ->autocomplete('on')
-!!} {!!
-    BootForm::email(
-        __('Email') . ' <span class="required_mark">*</span>',
-        'email',
-    )
-        ->required()
-        ->autocomplete('on')
-!!} {!!
-    BootForm::textarea(
-        __('Message') . ' <span class="required_mark">*</span>',
-        'message',
-    )->required()
-!!}
+<x-bootform::hidden name="locale" :value="isset($model->locale) ? $model->locale : app()->getLocale()" />
+
+<x-bootform::hidden name="id" />
+
+<x-bootform::text :label="__('Name') . &quot; <span class=\&quot;required_mark\&quot;>*</span>&quot;" name="name" required autocomplete="on" />
+
+<x-bootform::email :label="__('Email') . &quot; <span class=\&quot;required_mark\&quot;>*</span>&quot;" name="email" required autocomplete="on" />
+
+<x-bootform::textarea :label="__('Message') . &quot; <span class=\&quot;required_mark\&quot;>*</span>&quot;" name="message" required />
 
 <div class="mb-3">
-    {!!
-        BootForm::checkbox(
-            __('I agree to the Privacy Policy') .
-                ' <span class="required_mark">*</span>',
-            'privacy_policy_accepted',
-        )->required()
-    !!}
+    <x-bootform::checkbox :label="__('I agree to the Privacy Policy') . &quot; <span class=\&quot;required_mark\&quot;>*</span>&quot;" name="privacy_policy_accepted" required />
 </div>
 
 <div class="mb-3">
