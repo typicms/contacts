@@ -17,6 +17,7 @@ use TypiCMS\Modules\Core\Models\User;
 
 final class PublicController extends BasePublicController
 {
+    #[NoCache]
     public function form(): View
     {
         return view('public::contacts.form');
