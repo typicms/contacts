@@ -10,18 +10,22 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Contacts\Models\Contact;
+use TypiCMS\Modules\Core\Exports\EscapesFormulas;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 
 /**
  * @implements WithMapping<mixed>
  */
-class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping
+class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping, WithStrictNullComparison
 {
+    use EscapesFormulas;
+
     /** @return Collection<int, Contact> */
     public function collection(): Collection
     {
@@ -40,9 +44,9 @@ class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, Wi
             Date::dateTimeToExcel($row->created_at),
             Date::dateTimeToExcel($row->updated_at),
             $row->locale,
-            $row->name,
-            $row->email,
-            $row->message,
+            $this->escapeFormula($row->name),
+            $this->escapeFormula($row->email),
+            $this->escapeFormula($row->message),
         ];
     }
 
