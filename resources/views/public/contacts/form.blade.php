@@ -1,3 +1,4 @@
+@use('TypiCMS\Modules\Core\Support\ModuleUrl')
 <x-core::layouts.page :page="$page" :body-class="'body-contacts body-contacts-form body-page body-page-' . $page->id">
     <div class="page-body">
         <div class="page-body-container">
@@ -16,7 +17,7 @@
 
             <div class="rich-content">{!! $page->formattedBody() !!}</div>
 
-            {!! BootForm::open()->action(route(app()->getLocale() . '::store-contact'))->multipart() !!}
+            {!! BootForm::open()->action(ModuleUrl::index('contacts'))->multipart() !!}
 
             @include('public::contacts._fields')
 

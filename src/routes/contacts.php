@@ -7,26 +7,16 @@ use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Contacts\Http\Controllers\AdminController;
 use TypiCMS\Modules\Contacts\Http\Controllers\ApiController;
 use TypiCMS\Modules\Contacts\Http\Controllers\PublicController;
-use TypiCMS\Modules\Core\Models\Page;
+use TypiCMS\Modules\Core\Support\ModuleRoutes;
 
 /*
  * Front office routes
  */
-if (($page = getPageLinkedToModule('contacts')) instanceof Page) {
-    $middleware = $page->private ? ['public', 'auth'] : ['public'];
-    foreach (locales() as $lang) {
-        if ($page->isPublished($lang) && ($path = $page->path($lang))) {
-            Route::middleware($middleware)
-                ->prefix($path)
-                ->name($lang.'::')
-                ->group(function (Router $router): void {
-                    $router->get('/', [PublicController::class, 'form'])->name('index-contacts');
-                    $router->get('sent', [PublicController::class, 'sent'])->name('contact-sent');
-                    $router->post('/', [PublicController::class, 'store'])->name('store-contact');
-                });
-        }
-    }
-}
+ModuleRoutes::group('contacts', function (Router $router): void {
+    $router->get('/', [PublicController::class, 'form']);
+    $router->get('sent', [PublicController::class, 'sent']);
+    $router->post('/', [PublicController::class, 'store']);
+});
 
 /*
  * Admin routes

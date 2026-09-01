@@ -14,6 +14,7 @@ use TypiCMS\Modules\Contacts\Notifications\NewContactRequest;
 use TypiCMS\Modules\Contacts\Notifications\YourContactRequest;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 use TypiCMS\Modules\Core\Models\User;
+use TypiCMS\Modules\Core\Support\ModuleUrl;
 
 final class PublicController extends BasePublicController
 {
@@ -48,6 +49,8 @@ final class PublicController extends BasePublicController
 
         Notification::route('mail', (string) $request->string('email'))->notify(new YourContactRequest($contact));
 
-        return to_route(app()->getLocale().'::contact-sent')->with('success', true);
+        return redirect()
+            ->to(ModuleUrl::to('contacts', ['sent']) ?? '/')
+            ->with('success', true);
     }
 }
