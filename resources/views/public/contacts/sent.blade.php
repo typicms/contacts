@@ -3,7 +3,7 @@
         <div class="page-body-container">
             <div class="rich-content">{!! $page->formattedBody() !!}</div>
 
-            <p class="alert alert-success">@lang('message when contact form is sent')</p>
+            <p class="alert theme-success">@lang('message when contact form is sent')</p>
         </div>
     </div>
 </x-core::layouts.page>

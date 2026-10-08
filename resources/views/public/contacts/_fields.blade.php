@@ -10,11 +10,11 @@
 
 <x-bootform::textarea :label="__('Message') . $requiredMark" name="message" required />
 
-<div class="mb-3">
+<div class="mb-5">
     <x-bootform::checkbox :label="__('I agree to the Privacy Policy') . $requiredMark" name="privacy_policy_accepted" required />
 </div>
 
-<div class="mb-3">
+<div class="mb-5">
     <span class="required_mark">*</span>
     @lang('Mandatory fields')
 </div>

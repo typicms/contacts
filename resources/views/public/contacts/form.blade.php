@@ -3,7 +3,7 @@
     <div class="page-body">
         <div class="page-body-container">
             @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible" role="alert">
+                <div class="alert theme-danger alert-dismissible" role="alert">
                     @lang('message when errors in form')
                     .
                     <ul class="mb-0">
@@ -22,7 +22,7 @@
             @include('public::contacts._fields')
 
             <div class="d-grid">
-                <button class="btn-primary btn btn-lg" type="submit">{{ __('Send') }}</button>
+                <button class="btn-solid theme-primary btn-lg" type="submit">{{ __('Send') }}</button>
             </div>
 
             {!! BootForm::close() !!}
