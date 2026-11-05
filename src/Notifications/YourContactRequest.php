@@ -26,6 +26,6 @@ class YourContactRequest extends Notification
     {
         return new MailMessage()
             ->subject('['.websiteTitle().'] '.__('Thank you for your contact request.'))
-            ->markdown('mail::contacts.your-new-contact-request', ['contact' => $this->contact]);
+            ->markdown('mails::contacts.your-new-contact-request', ['contact' => $this->contact]);
     }
 }

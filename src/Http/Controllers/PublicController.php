@@ -38,7 +38,7 @@ final class PublicController extends BasePublicController
     {
         $data = [];
         foreach ($request->validated() as $key => $value) {
-            $data[$key] = strip_tags((string) $value);
+            $data[$key] = strip_tags(is_scalar($value) ? (string) $value : '');
         }
 
         $contact = Contact::query()->create($data);
