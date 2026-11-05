@@ -15,17 +15,44 @@
         </template>
 
         <template #columns="{ sortArray }">
-            <item-list-column-header name="checkbox" v-if="$can('update contacts')||$can('delete contacts')"></item-list-column-header>
+            <item-list-column-header
+                name="checkbox"
+                v-if="$can('update contacts')||$can('delete contacts')"
+            ></item-list-column-header>
             <item-list-column-header name="edit" v-if="$can('update contacts')"></item-list-column-header>
-            <item-list-column-header name="created_at" sortable :sort-array="sortArray" :label="$t('Date')"></item-list-column-header>
-            <item-list-column-header name="name" sortable :sort-array="sortArray" :label="$t('Name')"></item-list-column-header>
-            <item-list-column-header name="email" sortable :sort-array="sortArray" :label="$t('Email')"></item-list-column-header>
-            <item-list-column-header name="message" sortable :sort-array="sortArray" :label="$t('Message')"></item-list-column-header>
+            <item-list-column-header
+                name="created_at"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Date')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="name"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Name')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="email"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Email')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="message"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Message')"
+            ></item-list-column-header>
         </template>
 
         <template #table-row="{ model, checkedModels, loading }">
             <td class="checkbox" v-if="$can('update contacts')||$can('delete contacts')">
-                <item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox>
+                <item-list-checkbox
+                    :model="model"
+                    :checked-models-prop="checkedModels"
+                    :loading="loading"
+                ></item-list-checkbox>
             </td>
             <td v-if="$can('update contacts')">
                 <item-list-edit-button :url="'/admin/contacts/' + model.id + '/edit'"></item-list-edit-button>

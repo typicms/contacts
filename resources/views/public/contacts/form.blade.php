@@ -1,5 +1,5 @@
 @use('TypiCMS\Modules\Core\Support\ModuleUrl')
-<x-core::layouts.page :page="$page" :body-class="'body-contacts body-contacts-form body-page body-page-' . $page->id">
+<x-core::layouts.page :page="$page" :body-class="'body-contacts body-contacts-form body-page body-page-'.$page->id">
     <div class="page-body">
         <div class="page-body-container">
             @if ($errors->any())
@@ -11,7 +11,12 @@
                             <li>{{ $message }}</li>
                         @endforeach
                     </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@lang('Close')"></button>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="@lang('Close')"
+                    ></button>
                 </div>
             @endif
 

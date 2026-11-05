@@ -4,14 +4,18 @@
 
 <x-bootform::hidden name="id" />
 
-<x-bootform::text :label="__('Name') . $requiredMark" name="name" required autocomplete="on" />
+<x-bootform::text :label="__('Name').$requiredMark" name="name" required autocomplete="on" />
 
-<x-bootform::email :label="__('Email') . $requiredMark" name="email" required autocomplete="on" />
+<x-bootform::email :label="__('Email').$requiredMark" name="email" required autocomplete="on" />
 
-<x-bootform::textarea :label="__('Message') . $requiredMark" name="message" required />
+<x-bootform::textarea :label="__('Message').$requiredMark" name="message" required />
 
 <div class="mb-5">
-    <x-bootform::checkbox :label="__('I agree to the Privacy Policy') . $requiredMark" name="privacy_policy_accepted" required />
+    <x-bootform::checkbox
+        :label="__('I agree to the Privacy Policy').$requiredMark"
+        name="privacy_policy_accepted"
+        required
+    />
 </div>
 
 <div class="mb-5">
