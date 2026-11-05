@@ -27,6 +27,11 @@ class ModuleServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/views/public',
         ], 'public');
 
+        $this->loadViewsFrom([
+            resource_path('views/mail'),
+            __DIR__.'/../../resources/views/mail',
+        ], 'mails');
+
         $this->publishes([
             __DIR__.'/../../database/migrations/create_contacts_table.php.stub' => getMigrationFileName(
                 'create_contacts_table',
