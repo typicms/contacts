@@ -15,7 +15,7 @@ use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 
 final class ApiController extends BaseApiController
 {
-    /** @return LengthAwarePaginator<int, mixed> */
+    /** @return LengthAwarePaginator<int, Contact> */
     public function index(Request $request): LengthAwarePaginator
     {
         return QueryBuilder::for(Contact::class)
