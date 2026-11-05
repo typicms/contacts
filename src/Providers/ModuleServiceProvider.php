@@ -6,6 +6,7 @@ namespace TypiCMS\Modules\Contacts\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View as ViewInstance;
 use Override;
 use TypiCMS\Modules\Contacts\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Contacts\Models\Contact;
@@ -46,8 +47,8 @@ class ModuleServiceProvider extends ServiceProvider
         /*
          * Add the page in the view.
          */
-        View::composer('public::contacts.*', function ($view): void {
-            $view->page = getPageLinkedToModule('contacts');
+        View::composer('public::contacts.*', function (ViewInstance $view): void {
+            $view->with('page', getPageLinkedToModule('contacts'));
         });
     }
 
