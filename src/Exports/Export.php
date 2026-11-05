@@ -20,7 +20,7 @@ use TypiCMS\Modules\Core\Exports\EscapesFormulas;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 
 /**
- * @implements WithMapping<mixed>
+ * @implements WithMapping<Contact>
  */
 class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping, WithStrictNullComparison
 {
@@ -37,12 +37,15 @@ class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, Wi
             ->get();
     }
 
-    /** @return array<int, mixed> */
+    /**
+     * @param  Contact  $row
+     * @return array<int, mixed>
+     */
     public function map(mixed $row): array
     {
         return [
-            Date::dateTimeToExcel($row->created_at),
-            Date::dateTimeToExcel($row->updated_at),
+            $row->created_at ? Date::dateTimeToExcel($row->created_at) : null,
+            $row->updated_at ? Date::dateTimeToExcel($row->updated_at) : null,
             $row->locale,
             $this->escapeFormula($row->name),
             $this->escapeFormula($row->email),
